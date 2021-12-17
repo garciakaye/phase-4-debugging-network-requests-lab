@@ -63,11 +63,16 @@ developing your own process.
 - Add a new toy when the toy form is submitted
 
   - How I debugged:
+    -  Corrected NameError (Toys.create => Toy.create)
+    - Added rescue ActiveRecord::RecordInvalid => e
+    render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity and added an exception to Toy.create (Toy.create!)
 
 - Update the number of likes for a toy
 
   - How I debugged:
+    - Added render json: toy to the update method in the controller
 
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+    - Added :destroy to routes.rb
